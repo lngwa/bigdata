@@ -1,2 +1,0 @@
-This code provides two solutions to the same problem. One (GenericPair and GenericMain) uses generics and the other (Pair and Main) don't.
-To run the program (GenericMain or Main), make sure your input folder has the file whose words you wanna count.
