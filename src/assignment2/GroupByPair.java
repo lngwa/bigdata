@@ -1,19 +1,29 @@
-package assignment1;
+package assignment2;	
+import java.util.LinkedList;
+import java.util.List;
 
-public class Pair<K extends Comparable<K>,V> implements Comparable<Pair<K,V>>{
-	private K key;
-	private V value;
+public class GroupByPair<K extends Comparable<K>, V> implements Comparable<GroupByPair<K,V>>{
 	
-	public Pair(K key, V value) {
+	private K key;
+	private List<V> value;
+	
+	public GroupByPair(K key) {
+		this(key, null);
+	}
+	
+	public GroupByPair(K key, V value) {
 		this.key = key;
-		this.value = value;
+		this.value = new LinkedList<>();
+		if(value != null) {
+			this.value.add(value);			
+		}
 	}
 	
 	public K getKey() {
 		return key;
 	}
 	
-	public V getValue() {
+	public List<V> getValue() {
 		return value;
 	}
 	
@@ -24,7 +34,6 @@ public class Pair<K extends Comparable<K>,V> implements Comparable<Pair<K,V>>{
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -33,7 +42,7 @@ public class Pair<K extends Comparable<K>,V> implements Comparable<Pair<K,V>>{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pair<K,V> other = (Pair<K, V>) obj;
+		GroupByPair<K,V> other = (GroupByPair<K, V>) obj;
 		if (key == null) {
 			if (other.key != null)
 				return false;
@@ -42,8 +51,9 @@ public class Pair<K extends Comparable<K>,V> implements Comparable<Pair<K,V>>{
 		
 		return true;
 	}
+	
 	@Override
-	public int compareTo(Pair<K,V> pair) {
+	public int compareTo(GroupByPair<K,V> pair) {
 		return key.compareTo((K) pair.getKey());
 	}
 	

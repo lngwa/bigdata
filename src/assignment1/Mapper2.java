@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Main {
+public class Mapper2 {
 	static Scanner file;
 
-	public static void main(String[] args) {
+	public List<Pair2> map(String filePath) {
 		try {
-			file = new Scanner(new FileReader("input/testDataForW1D1.txt"));
+			file = new Scanner(new FileReader(filePath));
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
 
-		List<Pair> words = new LinkedList<>();
+		List<Pair2> words = new LinkedList<>();
 		
 		while (file.hasNext()) {	
 			String word = file.next();
@@ -24,7 +24,7 @@ public class Main {
 				String[] keys = word.split("-");
 				for(int i = 0; i < keys.length; i++) {
 					if(!keys[i].trim().isEmpty()) {
-						Pair pair = new Pair(keys[i].toLowerCase(), 1);
+						Pair2 pair = new Pair2(keys[i].toLowerCase(), 1);
 						words.add(pair);
 					}
 				}
@@ -34,8 +34,10 @@ public class Main {
 		}
 		file.close();
 		
-		List<Pair> pairs = words.stream().sorted().collect(Collectors.toList());
+		List<Pair2> pairs = words.stream().sorted().collect(Collectors.toList());
 		
 		pairs.forEach(p -> System.out.println("(" + p.getKey() + ", " + p.getValue() + ")"));
+		
+		return pairs;
 	}
 }
